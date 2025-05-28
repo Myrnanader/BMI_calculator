@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class UnitSelector extends StatefulWidget {
-  const UnitSelector({super.key});
+  final Function(String) onUnitSelected;
+
+  const UnitSelector({super.key, required this.onUnitSelected});
 
   @override
   _UnitSelectorState createState() => _UnitSelectorState();
 }
 
 class _UnitSelectorState extends State<UnitSelector> {
-  String selected = 'In';
+  String selected = 'Cm'; 
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,8 @@ class _UnitSelectorState extends State<UnitSelector> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          selected = label;
+          selected = label; 
+          widget.onUnitSelected(label); 
         });
       },
       child: Container(
